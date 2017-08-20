@@ -10,6 +10,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import victor.waes.bean.DiffDataInputBean;
 import victor.waes.bean.DiffResponseBean;
@@ -58,8 +59,13 @@ public final class DiffResource {
     @Path("{id}/right")
     public Response right(@PathParam("id") String id,
     		@Valid @NotNull DiffDataInputBean input) {
-    	diffBusiness.saveRight(id, input.getData());
-    	return Response.ok().build();
+    	boolean success = diffBusiness.saveRight(id, input.getData());
+    	
+    	if (success) {
+    		return Response.ok().build();
+    	} else {
+    		return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+    	}
     }
 
 	/**
@@ -75,7 +81,12 @@ public final class DiffResource {
     @Path("{id}/left")
     public Response left(@PathParam("id") String id,
     		@Valid @NotNull DiffDataInputBean input) {
-    	diffBusiness.saveLeft(id, input.getData());
-    	return Response.ok().build();
+    	boolean success = diffBusiness.saveLeft(id, input.getData());
+    	
+    	if (success) {
+    		return Response.ok().build();
+    	} else {
+    		return Response.status(Status.INTERNAL_SERVER_ERROR).build();
+    	}
     }
 }

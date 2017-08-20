@@ -13,7 +13,7 @@ import victor.waes.bean.validation.Base64;
  */
 public final class Base64Validator implements ConstraintValidator<Base64, String> {
 
-	private final Pattern base64CharsPattern = Pattern.compile("^[A-Za-z0-9+\\/=]+$");
+	private final Pattern base64CharsPattern = Pattern.compile("^[A-Za-z0-9+\\/=]*$");
 	
 	@Override
 	public void initialize(Base64 str) {		
@@ -22,7 +22,7 @@ public final class Base64Validator implements ConstraintValidator<Base64, String
 
 	@Override
 	public boolean isValid(String str, ConstraintValidatorContext context) {
-		if (str != null && !str.isEmpty()) {
+		if (str != null) {
 			if (str.length() % 4 == 0) {
 				Matcher m = base64CharsPattern.matcher(str);
 				if (m.matches()) {

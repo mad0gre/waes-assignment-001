@@ -63,6 +63,10 @@ public final class DiffBusinessSimpleImpl implements DiffBusiness {
 	}
 	
 	private boolean decodeAndStoreData(String id, String data, Map<String, byte[]> map) {
+		if (id == null || data == null) {
+			return false;
+		}
+		
 		// Decode Base 64 data.
 		byte[] bytes = null;
 		
