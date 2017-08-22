@@ -50,6 +50,7 @@ public final class DiffBusinessSimpleImpl implements DiffBusiness {
 				if (right[i] != left[i]) {
 					offset = i;
 					status = DiffStatus.NOT_EQUAL;
+					break;
 				}
 			}
 		}

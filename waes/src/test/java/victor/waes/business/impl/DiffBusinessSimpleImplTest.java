@@ -137,7 +137,7 @@ public class DiffBusinessSimpleImplTest {
 	@Test
 	public void testCalcDiffNotEqualCheckOffset() {
 		business.saveRight(DUMMY_ID, "DCx5CF9YS28=");
-		business.saveLeft(DUMMY_ID, "DCxkCF9YS28=");
+		business.saveLeft(DUMMY_ID, "DCxkCF9YS18=");
 		DiffStatusDTO dto = business.calcDiff(DUMMY_ID);
 		
 		assertEquals(2, dto.getOffset());
